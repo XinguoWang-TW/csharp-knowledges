@@ -17,7 +17,7 @@ namespace BasicCSharp
             mySet.Add("one");
 
             // please update variable value to fix the test
-            var expectedNumberOfElements = 3;
+            var expectedNumberOfElements = 2;
 
             Assert.Equal(expectedNumberOfElements, mySet.Count);
         }
@@ -28,7 +28,7 @@ namespace BasicCSharp
             ISet<string> mySet = new HashSet<string> { "one", "two", "three" };
 
             // please update variable value to fix the test
-            var expectedNumberOfElements = 0;
+            var expectedNumberOfElements = 3;
 
             Assert.Equal(expectedNumberOfElements, mySet.Count);
         }
@@ -39,7 +39,7 @@ namespace BasicCSharp
             ISet<int> mySet = new HashSet<int>() { 1, 2, 3, 4, 5 };
 
             // please update if statement fix the test.
-            Action<int> elementValidator = (x) => { if (true) throw new ArgumentOutOfRangeException("unexpected element"); };
+            Action<int> elementValidator = (x) => { if (x > 5) throw new ArgumentOutOfRangeException("unexpected element"); };
 
             Assert.All(mySet, elementValidator);
             Assert.Equal(5, mySet.Count);
@@ -51,7 +51,7 @@ namespace BasicCSharp
             ISet<int> mySet = new SortedSet<int>() { 1, 5, 3, 4, 2 };
 
             // please update variable value to fix the test.
-            IList<int> expectedOrderOfElements = new List<int> { 1, 5, 3, 4, 2 };
+            IList<int> expectedOrderOfElements = new List<int> { 1, 2, 3, 4, 5 };
 
             Assert.Equal(expectedOrderOfElements, mySet.ToList());
         }
@@ -66,7 +66,7 @@ namespace BasicCSharp
             };
 
             // please update variable value to fix the test
-            var expectedAddressOfJo = "don't know";
+            var expectedAddressOfJo = "Jo's address";
 
 
             Assert.Equal(expectedAddressOfJo, myDictionary["jo"]);
@@ -82,7 +82,7 @@ namespace BasicCSharp
             };
 
             // please update variable value to fix the test
-            var expectedKeyOrder = new List<int> { 2, 3, 1 };
+            var expectedKeyOrder = new List<int> { 1, 2, 3 };
 
             Assert.Equal(expectedKeyOrder, myDictionary.Keys);
         }
@@ -93,8 +93,8 @@ namespace BasicCSharp
             IList<string> myList = new List<string> { "one", "two", "one" };
 
             // please update variable value to fix the test
-            var expectedSecondElement = "not one";
-            var expectedElementCount = 2;
+            var expectedSecondElement = "two";
+            var expectedElementCount = 3;
 
             Assert.Equal(expectedSecondElement, myList[1]);
             Assert.Equal(expectedElementCount, myList.Count);
@@ -110,7 +110,7 @@ namespace BasicCSharp
             myLinkedList.AddFirst("one");
 
             // please update variable value to fix the test
-            var expectedLinkedListContent = new List<string> { "", "", "", "" };
+            var expectedLinkedListContent = new List<string> { "one", "two", "three", "four" };
 
             Assert.Equal(expectedLinkedListContent, myLinkedList.ToList());
         }
@@ -123,7 +123,7 @@ namespace BasicCSharp
             myStack.Push("middle");
             myStack.Push("last");
 
-            var expectedFirstElementToRetrieve = "first";
+            var expectedFirstElementToRetrieve = "last";
 
             Assert.Equal(expectedFirstElementToRetrieve, myStack.Pop());
         }
@@ -136,7 +136,7 @@ namespace BasicCSharp
             myQueue.Enqueue("middle");
             myQueue.Enqueue("last");
 
-            var expectedFirstElementToRetrieve = "last";
+            var expectedFirstElementToRetrieve = "first";
 
             Assert.Equal(expectedFirstElementToRetrieve, myQueue.Dequeue());
         }
