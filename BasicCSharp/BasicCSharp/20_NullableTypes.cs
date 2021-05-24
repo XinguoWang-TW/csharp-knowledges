@@ -15,7 +15,7 @@ namespace BasicCSharp
             bool isValueType = nullableType.IsValueType;
 
             // change the variable value to fix the test.            
-            const bool expectedIsValueType = false;
+            const bool expectedIsValueType = true;
 
             Assert.Equal(expectedIsValueType, isValueType);
         }
@@ -26,7 +26,7 @@ namespace BasicCSharp
             Nullable<int> nullableInt = null;
 
             // change the variable value to fix the test.
-            const bool expectedEquals = false;
+            const bool expectedEquals = true;
 
             Assert.Equal(expectedEquals, nullableInt == null);
         }
@@ -37,7 +37,7 @@ namespace BasicCSharp
             int? nullableInt = null;
 
             // change the variable value to fix the test.
-            const bool expectedEquals = false;
+            const bool expectedEquals = true;
 
             Assert.Equal(expectedEquals, nullableInt == null);
         }
@@ -52,8 +52,8 @@ namespace BasicCSharp
             bool hasValueForWithValue = nullableIntWithValue.HasValue;
 
             // change the variable values for the following 2 lines to fix test.
-            const bool expectedHasValueForWithoutValue = true;
-            const bool expectedHasValueForWithValue = false;
+            const bool expectedHasValueForWithoutValue = false;
+            const bool expectedHasValueForWithValue = true;
             
             Assert.Equal(expectedHasValueForWithoutValue, hasValueForWithoutValue);
             Assert.Equal(expectedHasValueForWithValue, hasValueForWithValue);
@@ -70,7 +70,7 @@ namespace BasicCSharp
             Exception unhandledException = useValueWithoutChecking.RunAndGetUnhandledException();
 
             // change the variable value to fix the test.
-            Type expectedExceptionType = typeof(Exception);
+            Type expectedExceptionType = typeof(InvalidOperationException);
 
             Assert.IsType(expectedExceptionType, unhandledException);
         }
@@ -82,7 +82,7 @@ namespace BasicCSharp
             var valueForNullableInstance = (int) nullableIntWithValue;
 
             // change the variable value to fix the test.
-            const int expectedValue = default(int);
+            const int expectedValue = 2;
 
             Assert.Equal(expectedValue, valueForNullableInstance);
         }
@@ -94,7 +94,7 @@ namespace BasicCSharp
             int? smaller = 1;
 
             // change the variable value to fix the test.
-            const bool expectedCompareResult = false;
+            const bool expectedCompareResult = true;
 
             Assert.Equal(expectedCompareResult, larger > smaller);
         }
@@ -103,9 +103,9 @@ namespace BasicCSharp
         public void should_returns_false_if_one_of_the_nullable_instance_has_no_value_when_doing_operator_lifting()
         {
             // change the variable values for the following 4 lines to fix the test.
-            const bool expectedResultFor5IsLargerThanNull = true;
-            const bool expectedResultFor5IsSmallerThanNull = true;
-            const bool expectedResultForNullIsLargerThanNull = true;
+            const bool expectedResultFor5IsLargerThanNull = false;
+            const bool expectedResultFor5IsSmallerThanNull = false;
+            const bool expectedResultForNullIsLargerThanNull = false;
 
             #pragma warning disable 0464 // suppress compiler warning about comparing nullable variables and null
             Assert.Equal(expectedResultFor5IsLargerThanNull, (int?) 5 > (int?) null);
@@ -118,8 +118,8 @@ namespace BasicCSharp
         public void should_tell_equality_for_nullable_types()
         {
             // change the variable values for the following 2 lines to fix the test.
-            const bool expectedResultForNullToNull = false;
-            const bool expectedResultFor5To5 = false;
+            const bool expectedResultForNullToNull = true;
+            const bool expectedResultFor5To5 = true;
 
             Assert.Equal(expectedResultForNullToNull, (int?) null == (int?) null);
             Assert.Equal(expectedResultFor5To5, (int?) 5 == (int?) 5);
