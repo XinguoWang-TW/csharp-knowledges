@@ -24,7 +24,7 @@ namespace BasicCSharp
             }
 
             // change variable value to fix test.
-            const string expectedTracingMessage = "";
+            const string expectedTracingMessage = "constructor called.\ndispose called.\n";
 
             Assert.Equal(expectedTracingMessage, demoDisposable.TracerContent());
         }
@@ -39,7 +39,7 @@ namespace BasicCSharp
             }
 
             // change the variable value to fix the test.
-            const string expectedTracingMessage = "";
+            const string expectedTracingMessage = "constructor called.\n";
 
             Assert.Equal(expectedTracingMessage, tracerContent);
         }
