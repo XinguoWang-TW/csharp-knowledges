@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<BasicASP.NETMvc.Models.Movie>
 @{
     ViewBag.Title = "Index";
+    var movies = ViewBag.FilterMovies as IEnumerable<BasicASP.NETMvc.Models.Movie>;
 }
 <h2>Movies</h2>
 <p>
     
     @* # homework 4 -- add button for redirected to create page  *@
+    @Html.ActionLink("Create","Create")
 
     @using (Html.BeginForm("Index", "Movies", FormMethod.Get))
     {
@@ -37,8 +39,31 @@
         <th></th>
     </tr>
     @* # homework 2 -- show the movies on this site  *@
-    
-    @* # homework 6 -- add Edit,Details,Delete buttons every line and them shou link to action *@
-    
 
+    @foreach (var item in movies)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(item => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(item => item.Rating)
+            </td>
+            @* # homework 6 -- add Edit,Details,Delete buttons every line and them shou link to action *@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 </table>

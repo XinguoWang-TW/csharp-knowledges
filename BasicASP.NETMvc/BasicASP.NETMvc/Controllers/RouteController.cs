@@ -9,12 +9,12 @@ namespace BasicASP.NETMvc.Controllers
 {
     [AllowAnonymous]
     //basic points 12 Please change "api" to made this controller root path is "api/route"
-    [RoutePrefix("api")]
+    [RoutePrefix("api/route")]
     public class RouteController : ApiController
     {
         // Get
         //basic points 13 Change "xxx" and requet "/api/route/index" by Get
-        [Route("xxx")]
+        [Route("index")]
         public string Get()
         {
             return "hello world";

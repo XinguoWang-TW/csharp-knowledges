@@ -27,10 +27,11 @@ namespace BasicASP.NETMvc.Controllers
             ViewBag.MovieGenre = new SelectList(genreLst);
 
             // # homework 3 -- read movies data from loacl-db,please use linq
+            var movies = db.Movies;
 
-            
             // # homework 7 -- filte movies data by conditions
-            
+            var filterMovies = movies.Where(w => w.Genre == movieGenre && w.Title.Contains(searchString));
+            ViewBag.FilterMovies = filterMovies.ToList();
 
             return View();
         }
@@ -71,8 +72,15 @@ namespace BasicASP.NETMvc.Controllers
             Movie movie)
         {
             // # homework 5 -- save data to loacl-db
-
-            return View(movie);
+            db.Movies.Add(movie);
+            if (db.SaveChanges() > 0)
+            {
+                return View(movie);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.InternalServerError, "To create movie failed! Please try it again!");
+            }
         }
 
         // GET: Movies/Edit/5
@@ -84,7 +92,9 @@ namespace BasicASP.NETMvc.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View();
+            var movie = db.Movies.Find(id);
+
+            return View(movie);
         }
 
         // POST: Movies/Edit/5
@@ -108,7 +118,16 @@ namespace BasicASP.NETMvc.Controllers
         {
             // # homework 9 -- find data by id 
             // when id is null ,return HttpStatusCode.BadRequest;
-            
+            var movie = db.Movies.FirstOrDefault(f => f.ID == id);
+            if (movie != null)
+            {
+                db.Movies.Remove(movie);
+                db.SaveChanges();
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "This movie is not existed!");
+            }
             
             return View();
         }

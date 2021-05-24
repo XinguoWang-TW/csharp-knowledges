@@ -9,7 +9,7 @@ namespace BasicASP.NETMvc
         {
             filters.Add(new HandleErrorAttribute());
             //please add authorcation filter
-            
+            filters.Add(new AuthorizeAttribute());
         }
     }
 }
