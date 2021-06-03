@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  basicasp.netcoremvcknowledge:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:4433;http://+:5005
+    ports:
+      - "5005"
+      - "4433"
+    volumes:
+      - ~/.aspnet/https:/root/.aspnet/https:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+      - "/var/lib/test_compose_data/webapp"

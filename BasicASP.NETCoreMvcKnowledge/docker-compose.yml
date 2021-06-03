@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  basicasp.netcoremvcknowledge:
+    image: ${DOCKER_REGISTRY-}basicasp
+    container_name: compose_app_basicasp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5005:80"
+    volumes:
+      - "/var/lib/test_compose_data/webapp"
+    networks:
+      - frontend
+      - backend
+  postgres_db:
+    image: postgres
+    container_name: compose_postgres
+    ports:
+      - "5002:5432"
+    networks:
+      - backend
+    volumes:
+      - "/var/lib/test_compose_data/postgres"
+    environment:
+      - POSTGRES_PASSWORD=abc-123
+      - POSTGRES_USER=postgres
+networks:
+  frontend:
+    # Use a custom driver
+    driver: bridge
+  backend:
+    # Use a custom driver which takes special options
+    driver: bridge
